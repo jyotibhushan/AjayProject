@@ -1,0 +1,14 @@
+<decorators defaultdir="/layouts">
+
+	<excludes>
+		<pattern>/jsp/excludes.jsp</pattern>
+   	</excludes>
+   	
+   	<decorator name="ayout" page="Layout.jsp">
+		<pattern>/jsp/UnexpectedError.jsp</pattern>
+	</decorator>
+		<!-- Decorator for pages which need header and footer -->
+	<decorator name="HeaderFooter" page="HeaderFooter.jsp"></decorator>
+ </decorators>
+ 
+ 
