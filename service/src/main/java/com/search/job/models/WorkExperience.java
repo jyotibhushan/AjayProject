@@ -20,7 +20,7 @@ public class WorkExperience extends SearchJobBaseModel{
 	private int endYear;
 
 	private boolean currentlyWorkingHere;
-
+	
 	public String getCompany() {
 		return company;
 	}

@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "UserProfile")
@@ -16,8 +17,10 @@ public class UserProfile extends SearchJobBaseModel {
 
 	private String lastName;
 
+	@Indexed
 	private String email;
-
+	
+	@Indexed
 	private String password;
 
 	private String jobTitle;

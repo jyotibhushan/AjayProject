@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
 import com.search.job.models.UserProfile;
+import com.search.job.models.UserSession;
 import com.search.job.rest.BaseDataUtil;
 import com.search.job.rest.login.LoginPO;
 import com.search.job.rest.login.LoginVO;
@@ -54,11 +55,13 @@ public class AuthenticationUtil extends BaseDataUtil {
 			return JResponse.ok(response).build();
 		}
 		
-		
 		TokenHolderObject tokenHolder = new TokenHolderObject(login.getUsername(), login.getPassword(), "ROLE_USER", Calendar.getInstance().getTimeInMillis());
 		
-		
 		LoginVO loginVO = new LoginVO(TokenUtils.getToken(tokenHolder), users.get(0));
+		
+		UserSession userSession = new UserSession(login.getUsername(), Calendar.getInstance().getTime(), loginVO.getToken());
+		getMongoTemplate().save(userSession);
+		
 		com.search.job.rest.response.BaseResponse response = new SucessResponse(loginVO);
 		return JResponse.ok(response).build();
 	}

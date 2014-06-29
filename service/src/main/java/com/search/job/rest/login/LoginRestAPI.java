@@ -15,6 +15,7 @@ import com.sun.jersey.api.JResponse;
 @Path("/{version}/login")
 public class LoginRestAPI extends BaseRestAPI {
 	
+	@Path("/candidate")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
