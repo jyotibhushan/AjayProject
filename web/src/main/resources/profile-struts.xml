@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="profile" extends="struts-default" namespace="/profile">
+	
+		<action name="login" class="registrationBean" method="login">	
+			<result name="success">/jsp/user/UserProfileLogin.jsp</result>	
+		</action>
+		
+		<action name="authenticate" class="registrationBean" method="authenticate">	
+			<result name="error">/jsp/user/UserProfileLogin.jsp</result>	
+		</action>
+
+		<action name="registration" class="registrationBean" method="registerCandidate">	
+			<result name="success">/jsp/registration/UserRegistration.jsp</result>	
+		</action>
+		
+		<action name="signup" class="registrationBean" method="signup">	
+			<result name="error">/jsp/registration/UserRegistration.jsp</result>	
+		</action>
+		
+		<action name="view" class="registrationBean" method="view">	
+			<result name="success">/jsp/user/UserProfile.jsp</result>	
+		</action>
+	</package>
+</struts>

@@ -13,16 +13,16 @@ import com.search.job.models.UserSession;
 import com.search.job.rest.BaseDataUtil;
 import com.search.job.rest.login.LoginPO;
 import com.search.job.rest.login.LoginVO;
+import com.search.job.rest.response.BaseResponse;
 import com.search.job.rest.response.Error;
 import com.search.job.rest.response.FailureResponse;
 import com.search.job.rest.response.SucessResponse;
 import com.search.job.security.utils.TokenHolderObject;
 import com.search.job.security.utils.TokenUtils;
-import com.sun.jersey.api.JResponse;
 
 public class AuthenticationUtil extends BaseDataUtil {
 	
-	public static JResponse<com.search.job.rest.response.BaseResponse> login(String apiKey, String version, LoginPO login) {
+	public static BaseResponse login(String apiKey, String version, LoginPO login) {
 		
 		List<Error> errors = new ArrayList<Error>();
 		
@@ -38,7 +38,7 @@ public class AuthenticationUtil extends BaseDataUtil {
 		
 		if (!errors.isEmpty()) {
 			com.search.job.rest.response.BaseResponse response = new FailureResponse(200, errors);
-			return JResponse.ok(response).build();
+			return response;
 		}
 		
 		Query q = new Query();
@@ -52,7 +52,7 @@ public class AuthenticationUtil extends BaseDataUtil {
 			Error error = new Error ("LOGIN3", "Invalid User Name/Password");
 			errors.add(error);
 			com.search.job.rest.response.BaseResponse response = new FailureResponse(200, errors);
-			return JResponse.ok(response).build();
+			return response;
 		}
 		
 		TokenHolderObject tokenHolder = new TokenHolderObject(login.getUsername(), login.getPassword(), "ROLE_USER", Calendar.getInstance().getTimeInMillis());
@@ -63,10 +63,10 @@ public class AuthenticationUtil extends BaseDataUtil {
 		getMongoTemplate().save(userSession);
 		
 		com.search.job.rest.response.BaseResponse response = new SucessResponse(loginVO);
-		return JResponse.ok(response).build();
+		return response;
 	}
 	
-	public static JResponse<com.search.job.rest.response.BaseResponse> signUP(String apiKey, String version, SignupPO signupVO) {
+	public static BaseResponse signUP(String apiKey, String version, SignupPO signupVO) {
 		
 		List<Error> errors = new ArrayList<Error>();
 		
@@ -85,12 +85,6 @@ public class AuthenticationUtil extends BaseDataUtil {
 			errors.add(error);
 		}
 		
-		if (signupVO.getLocation() == null || signupVO.getLocation().isEmpty()) {
-			Error error = new Error("SIGNUP4", "Location Can not null or empty");
-			errors.add(error);
-		}
-		
-		
 		if (signupVO.getPassword() == null || signupVO.getConfirmPassword() == null || !signupVO.getPassword().equals(signupVO.getConfirmPassword())) {
 			Error error = new Error("SIGNUP4", "Password not matches with confirm password");
 			errors.add(error);
@@ -100,7 +94,7 @@ public class AuthenticationUtil extends BaseDataUtil {
 		
 		if (!errors.isEmpty()) {
 			com.search.job.rest.response.BaseResponse response = new FailureResponse(200, errors);
-			return JResponse.ok(response).build();
+			return response;
 		}
 		
 		Query q = new Query();
@@ -113,10 +107,10 @@ public class AuthenticationUtil extends BaseDataUtil {
 			Error error = new Error("SIGNUP5", "User Already Exist");
 			errors.add(error);
 			com.search.job.rest.response.BaseResponse response = new FailureResponse(200, errors);
-			return JResponse.ok(response).build();
+			return response;
 		}
 		
-		UserProfile userProfile = new UserProfile(signupVO.getFirstName(), signupVO.getLastName(), signupVO.getEmail(), DigestUtils.md5Hex(signupVO.getPassword()), signupVO.getLocation());
+		UserProfile userProfile = new UserProfile(signupVO.getFirstName(), signupVO.getLastName(), signupVO.getEmail(), DigestUtils.md5Hex(signupVO.getPassword()));
 		
 		getMongoTemplate().save(userProfile);
 		

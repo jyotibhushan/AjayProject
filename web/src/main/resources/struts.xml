@@ -14,4 +14,5 @@
 	<constant name="struts.action.excludePattern" value="/service/.*" />
 	 
 	<include file="base-struts.xml" />
+	<include file="profile-struts.xml" />
 </struts>

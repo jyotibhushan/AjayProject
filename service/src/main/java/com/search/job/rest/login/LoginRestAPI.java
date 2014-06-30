@@ -20,6 +20,6 @@ public class LoginRestAPI extends BaseRestAPI {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public JResponse<com.search.job.rest.response.BaseResponse> doLogin(@HeaderParam("X-API-KEY") String apiKey, @PathParam("version") String version, LoginPO login) {
-		return AuthenticationUtil.login(apiKey, version, login);
+		return JResponse.ok(AuthenticationUtil.login(apiKey, version, login)).build();
 	}
 }

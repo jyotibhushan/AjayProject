@@ -42,12 +42,11 @@ public class UserProfile extends SearchJobBaseModel {
 	public UserProfile(){
 	}
 	
-	public UserProfile(String firstName, String lastName, String email, String password, String location){
+	public UserProfile(String firstName, String lastName, String email, String password){
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
-		this.location = location;
 	}
 
 	public String getId() {

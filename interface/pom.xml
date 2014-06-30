@@ -26,6 +26,13 @@
 		</dependency>
 		
 		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${version.servlet.api}</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
 			<groupId>com.search.job</groupId>
 			<artifactId>web</artifactId>
 			<version>1.0-SNAPSHOT</version>

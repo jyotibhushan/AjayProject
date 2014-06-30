@@ -10,9 +10,19 @@ public class SignupPO implements Serializable {
 
 	private String firstName;
 	private String lastName;
-	private String location;
 	private String password;
 	private String confirmPassword;
+	
+	public SignupPO(){
+	}
+	
+	public SignupPO(String email, String firstName, String lastName, String password, String confirmPassword){
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.password = password;
+		this.confirmPassword = confirmPassword;
+	}
 
 	public String getEmail() {
 		return email;
@@ -36,14 +46,6 @@ public class SignupPO implements Serializable {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public String getLocation() {
-		return location;
-	}
-
-	public void setLocation(String location) {
-		this.location = location;
 	}
 
 	public String getPassword() {

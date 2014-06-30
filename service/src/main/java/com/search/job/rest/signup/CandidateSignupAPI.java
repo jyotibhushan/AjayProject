@@ -21,6 +21,6 @@ public class CandidateSignupAPI extends BaseRestAPI{
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public JResponse<BaseResponse> signUpCandidate(@HeaderParam("X-API-KEY") String apiKey, @PathParam("version") String version, SignupPO signupVO){
-		return AuthenticationUtil.signUP(apiKey, version, signupVO);
+		return JResponse.ok(AuthenticationUtil.signUP(apiKey, version, signupVO)).build();
 	}
 }

@@ -43,5 +43,18 @@
 			<exception-mapping exception="org.springframework.security.AccessDeniedException" result="accessDenied" />
 		</global-exception-mappings>
 		
+		
+		<action name="registration" class="registrationBean" method="registerCandidate">	
+			<result name="success">/jsp/registration/UserRegistration.jsp</result>	
+		</action>
+		
+		<action name="signup" class="registrationBean" method="signup">	
+			<result name="error">/jsp/registration/UserRegistration.jsp</result>	
+			<result name="success">/jsp/user/UserProfile.jsp</result>	
+		</action>
+		
+		<action name="view" class="registrationBean" method="view">	
+			<result name="success">/jsp/user/UserProfile.jsp</result>	
+		</action>
 	</package>
 </struts>
